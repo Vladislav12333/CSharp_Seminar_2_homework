@@ -2,25 +2,36 @@
 // 645 -> 5
 // 78 -> третьей цифры нет
 // 32679 -> 6
-
-Console.WriteLine("Введите число: ");
-int number = Convert.ToInt32(Console.ReadLine());
-
-int ThirdDigit(int number)
+// Второй вариант решения задачи
+int Prompt(string message)
 {
-    int result = -1;
-    if (number >= 100)
-    {
-        while (number > 999)
-        {
-            number = number / 10;
-        }
-        result = number % 10;
-
-    }
+    Console.Write(message);
+    string? value = Console.ReadLine();
+    int result = Convert.ToInt32(value);
     return result;
 }
-if (ThirdDigit(number) == -1)
-    Console.WriteLine("Третьей цифры нет");
-else
-    Console.WriteLine($"Третья цифра это {ThirdDigit(number)}");
+
+int GetThirdRank(int number)
+{
+    while (number > 999)
+    {
+        number /= 10;
+    }
+    return number % 10;
+}
+
+bool ValidateNumber(int number)
+{
+    if (number < 100)
+    {
+        Console.WriteLine("Третьей цифры нет");
+        return false;
+    }
+    return true;
+}
+
+int number = Prompt("Введите число > ");
+if (ValidateNumber(number))
+{
+    Console.WriteLine(GetThirdRank(number));
+}

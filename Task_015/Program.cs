@@ -3,20 +3,43 @@
 // 7 -> да
 // 1 -> нет
 
-//Второй вариант решения задачи
-Console.Write("Введи цифру деня недели: ");
-int dayNumber = Convert.ToInt32(Console.ReadLine());
-
-void DayOfTheWeek(int dayNumber)
+//Третий вариант решения задачи
+int Prompt(string message)
 {
-    if (dayNumber == 6 || dayNumber == 7)
-    {
-        Console.WriteLine("Да, этот день выходной");
-    }
-    else if (dayNumber < 1 || dayNumber > 7)
-    {
-        Console.WriteLine("Такого дня недели не существует");
-    }
-    else Console.WriteLine("Нет, этот день не выходной");
+    Console.Write(message);
+    string value = Console.ReadLine();
+    int result = Convert.ToInt32(value);
+    return result;
 }
-DayOfTheWeek(dayNumber);
+
+bool IsWeekend(int weekDay)
+{
+    if (weekDay > 5)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool ValidateWeekday(int number)
+{
+    if (number > 0 && number <= 7)
+    {
+        return true;
+    }
+    Console.WriteLine("Это не день недели!");
+    return false;
+}
+
+int weekDay = Prompt("Введите день недели > ");
+if (ValidateWeekday(weekDay))
+{
+    if (IsWeekend(weekDay))
+    {
+        Console.WriteLine("Наконец-то выходной");
+    }
+    else
+    {
+        Console.WriteLine("Придется поработать");
+    }
+}
